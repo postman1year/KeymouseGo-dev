@@ -20,7 +20,7 @@
 </div>
 <br>
 
-[简体中文](README.md) | [English](README_en-US.md)
+[简体中文](README.md) | [English](README_en-US.md) | [繁體中文](README_zh-tw.md)
 
 </div>
 
