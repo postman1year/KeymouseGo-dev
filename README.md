@@ -20,7 +20,7 @@
 </div>
 <br>
 
-[简体中文](README_zh-CN.md) | [English](README_en-US.md) | [繁體中文](README_zh-TW.md)
+[簡體中文](README_zh-CN.md) | [English](README_en-US.md) | [繁體中文](README_zh-TW.md)
 
 </div>
 
@@ -49,16 +49,22 @@
 1. 安裝 Python3.11.9 (python-3.11.9-amd64.exe), 注意PYTHON最高版本只能是3.11, 不能是3.12或以上!!!!
 
 2. pip安裝依賴
-- (Windows)            pip install -r requirements-windows.txt
+- (Windows) pip install -r requirements-windows.txt
+
+- (Linux/MacOS) pip3 install -r requirements-universal.txt
 
 3. pip安裝pyinstaller
-- (Windows)            pip install pyinstaller
+-  pip install pyinstaller
 
 4. pyinstaller打包
-- (Windows)            pyinstaller -F -w --add-data "./assets;assets" KeymouseGo.py
+- (Windows) pyinstaller -F -w --add-data "./assets;assets" KeymouseGo.py
 
+- (Linux X11) pyinstaller -F -w --add-data "./assets:assets" --hidden-import "pynput.keyboard._xorg" --hidden-import "pynput.mouse._xorg" KeymouseGo.py
+- (Linux Wayland) pyinstaller -F -w --add-data "./assets:assets"  --hidden-import "pynput.keyboard._uinput" --hidden-import "pynput.mouse._uinput" KeymouseGo.py
+- (MacOS) pyinstaller -F -w --add-data "./assets:assets" --hidden-import "pynput.keyboard._darwin" --hidden-import "pynput.mouse._darwin" KeymouseGo.py
+```
 
-打包完成後，可執行exe檔案在專案路徑的`dist`資料夾內。
+打包完成後，可執行檔案在專案路徑的`dist`資料夾內。
 
 # 使用方法
 
@@ -91,7 +97,7 @@
 
 1、可設定指令碼重複執行的次數，如果為 `0` 即為無限循環。
 
-2、預設啟動熱鍵為 `F12`，功能等同於 `啟動` 按鈕；預設終止熱鍵為 `F9`，按下後將會停止正在執行的指令碼。
+2、預設啟動熱鍵為 `F6`，功能等同於 `啟動` 按鈕；預設終止熱鍵為 `F9`，按下後將會停止正在執行的指令碼。
 
 3、錄製時只記錄滑鼠點選動作和鍵盤動作，不記錄滑鼠移動軌跡。
 
@@ -122,22 +128,22 @@ chmod -R 770 ~/.qt_material
 {
   scripts: [
     // 開始執行 `3000ms` 后，在螢幕相對座標 `(0.05208, 0.1852)`即 `(100,200)` 處 `按下滑鼠右鍵`；
-    {type: "event", event_type: "EM", delay: 3000, action_type: "mouse right down", action: ["0.05208%", "0.1852%"]},
+    {delay: 3000, event_type: "EM", action_type: "mouse right down", action: ["0.05208%", "0.1852%"], type: "event"},
     // 等待 `50ms` 后在相同位置 `抬起滑鼠右鍵`；
     // 橫縱座標為[-1, -1]時，表示在滑鼠目前所在位置執行操作。
-    {type: "event", event_type: "EM", delay: 50, action_type: "mouse right up", action: [-1, -1]},
-    // 等待 `1000ms` 后 `按下f鍵`；
-    {type: "event", event_type: "EK", delay: 1000, action_type: "key down", action: [70, 'F', 0]},
-    // 等待 `50ms` 后 `抬起f鍵`；
-    {type: "event", event_type: "EK", delay: 50, action_type: "key up", action: [70, 'F', 0]},
+    {delay: 50, event_type: "EM", action_type: "mouse right up", action: [-1, -1], type: "event"},
+    // 等待 `1000ms` 后 `按下F鍵`；
+    {delay: 1000, event_type: "EK", action_type: "key down", action: [70, 'F', 0], type: "event"},
+    // 等待 `50ms` 后 `抬起F鍵`；
+    {delay: 50, event_type: "EK", action_type: "key up", action: [70, 'F', 0], type: "event"},
     // 等待 `100ms` 后，在螢幕相對座標 `(0.2604, 0.4630)`即 `(500, 500)` 處 `按下滑鼠左鍵`；
-    {type: "event", event_type: "EM", delay: 100, action_type: "mouse left down", action: ["0.2604%", "0.4630%"]},
+    {delay: 100, event_type: "EM", action_type: "mouse left down", action: ["0.2604%", "0.4630%"], type: "event"},
     // 等待 `100ms` 后，滑鼠移動至相對座標 `(0.2604, 0.5556)`即 `(500, 600)` 位置；
-    {type: "event", event_type: "EM", delay: 100, action_type: "mouse move", action: ["0.2604%", "0.5556%"]},
+    {delay: 100, event_type: "EM", action_type: "mouse move", action: ["0.2604%", "0.5556%"], type: "event"},
     // 等待 `100ms` 后，在螢幕相對座標 `(0.3125, 0.5556)`即 `(600, 600)` 處 `抬起滑鼠左鍵`；
-    {type: "event", event_type: "EM", delay: 100, action_type: "mouse left up", action: ["0.3125%", "0.5556%"]},
+    {delay: 100, event_type: "EM", action_type: "mouse left up", action: ["0.3125%", "0.5556%"], type: "event"},
     // 等待 `100ms` 后，在目前位置輸入 `你好 world` 文字。
-    {type: "event", event_type: "EX", delay: 100, action_type: "input", action: "你好 world"}
+    {delay: 100, event_type: "EX", action_type: "input", action: "你好 world", type: "event"}
   ]
 }
 ```
@@ -172,10 +178,7 @@ chmod -R 770 ~/.qt_material
 
 <a href="https://www.jetbrains.com/?from=KeymouseGo"><img src="https://raw.githubusercontent.com/taojy123/KeymouseGo/master/jetbrains-variant-2.png" height="80"></a>
 
-
-
-
-# 基於DEV官方底包-差總2026年05月06日的最後修改
+# 基於DEV官方底包-差總2026年05月07日的最後修改
 
 1. 原作者繁體及簡體翻譯需要修補, 已完善
 
@@ -193,5 +196,8 @@ chmod -R 770 ~/.qt_material
 6. 2026年5月6日已向作者請求修改錄制JSON5原來的一個動作會由多行顯示, 需要變成一行的要求, 並指出不必要逗號問題,
    已得到作者積極修復(官方DEV分支已在5月6日源碼修復), 因此本人亦作出修復, 
    從此錄制的JSON5文件與官方簡介描述基本一致(一個動作--例如按鍵, 滑鼠移動等, 僅通過一行顯示)
+   
+7. 2026年5月7日發現已錄制之JSON5檔案內, delay、 event_type、 action、 action_type及type五個常量的前後被加入雙引號,即正確的delay成為"delay"
+   而這5個常量的前後雙引號雖然不會對執行有任何影響, 但顯示內容與官方一直以來的語法說明指南(delay)不一致, 故修改以去除雙引號, 以保持嚴謹和一致。
 
 在此特別感激作者的積極認真, 敬業樂業的高尚精神, 實為我等科技興趣者之楷模。實在感激不盡。

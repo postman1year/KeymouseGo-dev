@@ -2,6 +2,7 @@
 
 ```
 1. 安裝 Python3.11.9 (python-3.11.9-amd64.exe)
+   (注意:Python 3.12以上不能安裝Pywinhook)
 
 2. pip安裝依賴
 - (Windows)            pip install -r requirements-windows.txt

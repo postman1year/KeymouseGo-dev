@@ -36,7 +36,7 @@ class ScriptWriter:
             f.write('  "scripts": [\n')
 
             for i, event_str in enumerate(event_list):
-                line = json5.dumps(event_str, ensure_ascii=False, fp=f, trailing_commas=False, quote_keys=True)
+                line = json5.dumps(event_str, ensure_ascii=False, fp=f, trailing_commas=False, quote_keys=False)
                 comma = "," if i < len(event_list) - 1 else ""
                 f.write(f'    {line}{comma}\n')
 
