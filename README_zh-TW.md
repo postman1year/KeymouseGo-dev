@@ -97,7 +97,7 @@
 
 1、可設定指令碼重複執行的次數，如果為 `0` 即為無限循環。
 
-2、預設啟動熱鍵為 `F6`，功能等同於 `啟動` 按鈕；預設終止熱鍵為 `F9`，按下後將會停止正在執行的指令碼。
+2、預設啟動熱鍵為 `F12`，功能等同於 `啟動` 按鈕；預設終止熱鍵為 `F9`，按下後將會停止正在執行的指令碼。
 
 3、錄製時只記錄滑鼠點選動作和鍵盤動作，不記錄滑鼠移動軌跡。
 
@@ -178,7 +178,7 @@ chmod -R 770 ~/.qt_material
 
 <a href="https://www.jetbrains.com/?from=KeymouseGo"><img src="https://raw.githubusercontent.com/taojy123/KeymouseGo/master/jetbrains-variant-2.png" height="80"></a>
 
-# 基於DEV官方底包-差總2026年05月07日的最後修改
+# 基於DEV官方底包-差總2026年05月12日的最後修改
 
 1. 原作者繁體及簡體翻譯需要修補, 已完善
 
@@ -199,5 +199,11 @@ chmod -R 770 ~/.qt_material
    
 7. 2026年5月7日發現已錄制之JSON5檔案內, delay、 event_type、 action、 action_type及type五個常量的前後被加入雙引號,即正確的delay成為"delay"
    而這5個常量的前後雙引號雖然不會對執行有任何影響, 但顯示內容與官方一直以來的語法說明指南(delay)不一致, 故修改以去除雙引號, 以保持嚴謹和一致。
+   
+8. 2026年5月9日加入ctrl_v指令(等於CTRL+V的四行表逹式, 前提下需要先複製文字) :   
+   {delay: 100, event_type: "EX", <font color=red size=4><b>action_type: "ctrl_v", action: "", </b></font>type: "event"}
+   
+9. 2026年5月12加入click_tab指令(等於按TAB鍵N次, N為action--例如action: 5就是按5次) :   
+   {delay: 100, event_type: "EX", <font color=red size=4><b>action_type: "click_tab", action: 5, </b></font>type: "event"}
 
 在此特別感激作者的積極認真, 敬業樂業的高尚精神, 實為我等科技興趣者之楷模。實在感激不盡。

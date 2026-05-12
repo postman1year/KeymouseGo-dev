@@ -111,16 +111,30 @@ class WindowsEvent(Event):
         elif self.event_type == 'EX':
 
             if self.action_type == 'input':
-                pyclip.clear()
                 textin = self.action
+                tenp = pyclip.paste(text=True)
                 pyclip.copy(textin)
-                time.sleep(0.1)                
+                time.sleep(0.05)                
+                # Ctrl+V
+                win32api.keybd_event(162, 0, 0, 0)  # ctrl
+                win32api.keybd_event(86, 0, 0, 0)  # v
+                win32api.keybd_event(86, 0, win32con.KEYEVENTF_KEYUP, 0)
+                win32api.keybd_event(162, 0, win32con.KEYEVENTF_KEYUP, 0)
+                time.sleep(0.05)
+                pyclip.copy(tenp)
+            elif self.action_type == 'ctrl_v':
                 # Ctrl+V
                 win32api.keybd_event(162, 0, 0, 0)  # ctrl
                 win32api.keybd_event(86, 0, 0, 0)  # v
                 win32api.keybd_event(86, 0, win32con.KEYEVENTF_KEYUP, 0)
                 win32api.keybd_event(162, 0, win32con.KEYEVENTF_KEYUP, 0)
                 time.sleep(0.1)
-                pyclip.clear()
+            elif self.action_type == 'click_tab':
+                   counts = self.action
+                   for _ in range(counts):
+                     win32api.keybd_event(9, 0, 0, 0)
+                     time.sleep(0.02) 
+                     win32api.keybd_event(9, 0, win32con.KEYEVENTF_KEYUP, 0)
+                     time.sleep(0.05)
             else:
                 logger.warning('Unknown extra event:%s' % self.action_type)
