@@ -58,7 +58,7 @@
     <name>UIView</name>
     <message>
         <location filename="UIView.ui" line="14"/>
-        <source>KeymomuseGo v5.2.1</source>
+        <source>KeymomuseGo v5.3</source>
         <translation></translation>
     </message>
     <message>

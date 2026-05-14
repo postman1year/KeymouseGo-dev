@@ -46,7 +46,7 @@
 ### 原始碼打包可執行檔案
 
 ```
-1. 安裝 Python3.11.9 (python-3.11.9-amd64.exe), 注意PYTHON最高版本只能是3.11, 不能是3.12或以上!!!!
+1. 安裝 Python3.14.5 (python-3.14.5-amd64.exe) [(原來Python 3.12以上不能安裝Pywinhook的問題已由Postman1yeary於2026年5月14日完美解決] 
 
 2. pip安裝依賴
 - (Windows) pip install -r requirements-windows.txt
@@ -144,6 +144,14 @@ chmod -R 770 ~/.qt_material
     {delay: 100, event_type: "EM", action_type: "mouse left up", action: ["0.3125%", "0.5556%"], type: "event"},
     // 等待 `100ms` 后，在目前位置輸入 `你好 world` 文字。
     {delay: 100, event_type: "EX", action_type: "input", action: "你好 world", type: "event"}
+    //按 TAB 鍵共 12 次(等於按TAB鍵 N次, N為action--例如action: 12就是按TAB 12次) 
+    {delay: 10, event_type: "EX", action_type: "click_tab", action: 12, type: "event"},
+    //按 組合鍵 SHIFT+TAB 共 3 次
+	{delay: 10, event_type: "EK", action_type: "key down", action: [160, "Lshift", 0], type: "event"},
+    {delay: 10, event_type: "EX", action_type: "click_tab", action: 3, type: "event"},
+	{delay: 10, event_type: "EK", action_type: "key up", action: [160, "Lshift", 0], type: "event"},
+    //貼上新文字(等於CTRL+V的四行表逹式, 前提下需要先複製文字)
+    {delay: 10, event_type: "EX", action_type: "ctrl_v", action: "", type: "event"},
   ]
 }
 ```
@@ -178,7 +186,7 @@ chmod -R 770 ~/.qt_material
 
 <a href="https://www.jetbrains.com/?from=KeymouseGo"><img src="https://raw.githubusercontent.com/taojy123/KeymouseGo/master/jetbrains-variant-2.png" height="80"></a>
 
-# 基於DEV官方底包-差總2026年05月12日的最後修改
+# 基於DEV官方底包-差總2026年05月15日的最後修改
 
 1. 原作者繁體及簡體翻譯需要修補, 已完善
 
@@ -201,9 +209,13 @@ chmod -R 770 ~/.qt_material
    而這5個常量的前後雙引號雖然不會對執行有任何影響, 但顯示內容與官方一直以來的語法說明指南(delay)不一致, 故修改以去除雙引號, 以保持嚴謹和一致。
    
 8. 2026年5月9日加入ctrl_v指令(等於CTRL+V的四行表逹式, 前提下需要先複製文字) :   
-   {delay: 100, event_type: "EX", <font color=red size=4><b>action_type: "ctrl_v", action: "", </b></font>type: "event"}
+   {delay: 100, event_type: "EX", <b>action_type: "ctrl_v", action: "", </b>type: "event"}
    
 9. 2026年5月12加入click_tab指令(等於按TAB鍵N次, N為action--例如action: 5就是按5次) :   
-   {delay: 100, event_type: "EX", <font color=red size=4><b>action_type: "click_tab", action: 5, </b></font>type: "event"}
+   {delay: 100, event_type: "EX", <b>action_type: "click_tab", action: 5, </b>type: "event"}
+   
+10.2026年5月15日軟件版本修改為5.3, 並且移除pyclip改回pyperclip(pyperclip如複製為非文字則剪貼簿為空值, 避免複製檔案或圖像導致貼上錯誤)  
+---------------------------------------------------------------------------------------------------------------
+因pywinhook作者停止更新, 導致WHEEL檔案只能安裝於PYTHON 3.12版本以下, 本人已重新編譯pywinhook 3.14 whl檔, 現在可使用最新版本的python 3.14.5
 
 在此特別感激作者的積極認真, 敬業樂業的高尚精神, 實為我等科技興趣者之楷模。實在感激不盡。

@@ -1,5 +1,5 @@
 import re
-import pyclip
+import pyperclip
 import time
 import win32api
 
@@ -112,8 +112,8 @@ class WindowsEvent(Event):
 
             if self.action_type == 'input':
                 textin = self.action
-                tenp = pyclip.paste(text=True)
-                pyclip.copy(textin)
+                tenp = pyperclip.paste()
+                pyperclip.copy(textin)
                 time.sleep(0.05)                
                 # Ctrl+V
                 win32api.keybd_event(162, 0, 0, 0)  # ctrl
@@ -121,7 +121,7 @@ class WindowsEvent(Event):
                 win32api.keybd_event(86, 0, win32con.KEYEVENTF_KEYUP, 0)
                 win32api.keybd_event(162, 0, win32con.KEYEVENTF_KEYUP, 0)
                 time.sleep(0.05)
-                pyclip.copy(tenp)
+                pyperclip.copy(tenp)
             elif self.action_type == 'ctrl_v':
                 # Ctrl+V
                 win32api.keybd_event(162, 0, 0, 0)  # ctrl

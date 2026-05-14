@@ -1,6 +1,6 @@
 import re
 
-# import pyclip
+# import pyperclip
 import pyautogui
 from Event.Event import Event
 from loguru import logger
@@ -79,7 +79,7 @@ class UniversalEvent(Event):
         elif self.event_type == 'EX':
             if self.action_type == 'input':
                 text = self.action
-                # pyclip.copy(text)
+                # pyperclip.copy(text)
 
                 pyautogui.write(text)
                 # Ctrl+V

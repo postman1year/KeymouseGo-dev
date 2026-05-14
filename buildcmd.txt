@@ -1,8 +1,9 @@
 ### 原始碼打包可執行檔案
 
 ```
-1. 安裝 Python3.11.9 (python-3.11.9-amd64.exe)
-   (注意:Python 3.12以上不能安裝Pywinhook)
+1. 安裝 Python3.14.5 (python-3.14.5-amd64.exe)
+
+   (原來Python 3.12以上不能安裝Pywinhook的問題已由Postman1yeary於2026年5月14日解決)
 
 2. pip安裝依賴
 - (Windows)            pip install -r requirements-windows.txt
