@@ -186,7 +186,7 @@ chmod -R 770 ~/.qt_material
 
 <a href="https://www.jetbrains.com/?from=KeymouseGo"><img src="https://raw.githubusercontent.com/taojy123/KeymouseGo/master/jetbrains-variant-2.png" height="80"></a>
 
-# 基於DEV官方底包-差總2026年05月15日的最後修改
+# 基於DEV官方底包-差總2026年05月23日的最後修改
 
 1. 原作者繁體及簡體翻譯需要修補, 已完善
 
@@ -216,6 +216,6 @@ chmod -R 770 ~/.qt_material
    
 10.2026年5月15日軟件版本修改為5.3, 並且移除pyclip改回pyperclip(pyperclip如複製為非文字則剪貼簿為空值, 避免複製檔案或圖像導致貼上錯誤)  
 ---------------------------------------------------------------------------------------------------------------
-因pywinhook作者停止更新, 導致WHEEL檔案只能安裝於PYTHON 3.12版本以下, 本人已重新編譯pywinhook 3.14 whl檔, 現在可使用最新版本的python 3.14.5
-
-在此特別感激作者的積極認真, 敬業樂業的高尚精神, 實為我等科技興趣者之楷模。實在感激不盡。
+因pywinhook作者已停止更新6年之久,導致WHEEL檔案只能安裝於PYTHON 3.12版本以下,本人已重新根據源碼編譯pywinhook 3.14 whl檔(並改版本號為1.7.0), 
+然後發現pywin32官方網站有更新但pip install的版本仍然為舊版3.11, 故本人也重新根據源碼編譯最新的pywin32 3.11.1版本(2026年5月23日)
+現在可使用最新版本的python 3.14.5版本。

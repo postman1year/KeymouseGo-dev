@@ -1,10 +1,10 @@
 # Python3.14.5
 
-pywin32==311
+pywin32-311.1-cp314-cp314-win_amd64.whl
+pywinhook-1.7.0-cp314-cp314-win_amd64.whl
 pyperclip==1.11.0
 future==1.0.0
 PySide6==6.11.1
 qt-material==2.17
 loguru==0.7.3
 json5==0.14.0
-pywinhook-1.6.2-cp314-cp314-win_amd64.whl
